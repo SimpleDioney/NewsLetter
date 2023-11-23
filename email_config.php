@@ -8,10 +8,10 @@ require 'PHPMailer/src/SMTP.php';
 
 $emailConfig = [
     'host' => 'smtp.gmail.com',
-    'username' => 'dioneygabriel20@gmail.com',
-    'password' => 'yyxk ndxj inep wgse', // Use uma senha de aplicativo se a verificação em duas etapas estiver ativada
+    'username' => 'seuemail@gmail.com',
+    'password' => 'suasenha', // Use uma senha de aplicativo se a verificação em duas etapas estiver ativada
     'port' => 587,
-    'from' => 'newsletter@redekrust.com'
+    'from' => 'seuemail@gmail.com'
 ];
 
 function sendEmail($to, $subject, $content, $config) {
