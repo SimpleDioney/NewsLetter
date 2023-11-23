@@ -8,14 +8,15 @@ require 'PHPMailer/src/SMTP.php';
 
 $emailConfig = [
     'host' => 'smtp.gmail.com',
-    'username' => 'seuemail@gmail.com',
-    'password' => 'suasenha', // Use uma senha de aplicativo se a verificação em duas etapas estiver ativada
+    'username' => 'dioneygabriel20@gmail.com',
+    'password' => 'yyxk ndxj inep wgse', // Use uma senha de aplicativo se a verificação em duas etapas estiver ativada
     'port' => 587,
-    'from' => 'seuemail@gmail.com'
+    'from' => 'newsletter@redekrust.com'
 ];
 
 function sendEmail($to, $subject, $content, $config) {
     $mail = new PHPMailer(true);
+  $mail->CharSet = PHPMailer::CHARSET_UTF8;
 
 try {
         // Configurações do servidor
@@ -35,6 +36,7 @@ try {
   $emailHtml = "
   <html>
 <head>
+<meta charset='UTF-8'>
     <style>
         body { 
             font-family: 'Arial', sans-serif; 
