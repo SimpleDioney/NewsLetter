@@ -1,0 +1,25 @@
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+form {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input, textarea {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 95%;
+}
+
+#posts {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}

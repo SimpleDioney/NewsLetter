@@ -1,0 +1,94 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.newsletter {
+  background-color: white;
+  margin: 40px auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 700px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.newsletter h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.newsletter p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.newsletter p strong {
+  color: #333;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  color: #555;
+}
+
+.container {
+  width: 80%;
+  max-width: 700px;
+  margin: 40px auto;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.header {
+  background-color: #7a5af7;
+  color: white;
+  padding: 15px;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+}
+
+.footer {
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  background-color: #7a5af7;
+  color: white;
+  border-radius: 0 0 8px 8px;
+}
+
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+a.button {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #7a5af7;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a.button:hover {
+  background-color: #6847d1;
+}
+
+/* Estilo adicional para outros elementos se necessário */
