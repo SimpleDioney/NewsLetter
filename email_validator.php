@@ -14,7 +14,12 @@ $emailConfig = [
       'from' => 'seuemail@gmail.com'
   ];
 
+
+
 function sendEmail($to, $subject, $content, $config) {
+  $content = str_replace("Seu código é: ", "Seu código é: <span class='code-box'>", $content);
+  $content = preg_replace("/(\d{6})/", "$1</span>", $content);
+
     $mail = new PHPMailer(true);
   $mail->CharSet = PHPMailer::CHARSET_UTF8;
 
@@ -36,28 +41,64 @@ function sendEmail($to, $subject, $content, $config) {
         $emailHtml = "
         <html>
         <head>
-        <meta charset='UTF-8'>
-            <style>
-                body { font-family: 'Arial', sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
-                .container { background-color: white; margin: 20px auto; width: 90%; max-width: 600px; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-                .header { background-color: #7a5af7; color: white; padding: 20px; text-align: center; border-top-left-radius: 10px; border-top-right-radius: 10px; }
-                .content { padding: 20px; text-align: left; line-height: 1.6; color: #333; }
-                .footer { background-color: #7a5af7; color: white; padding: 10px; text-align: center; font-size: 14px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; }
-            </style>
-        </head>
-        <body>
-            <div class='container'>
-                <div class='header'>
-                    <h1>$subject</h1>
-                </div>
-                <div class='content'>
-                    $content
-                </div>
-                <div class='footer'>
-                    <p>&copy; " . date("Y") . " Krust Newsletter</p>
-                </div>
-            </div>
-        </body>
+    <style>
+        .email-container {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background-color: white;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header, .footer {
+            background-color: #7a5af7;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: left;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .code-box {
+            display: block; 
+            background-color: #7a5af7; 
+            color: white; 
+            padding: 10px 20px;
+            margin: 20px auto; 
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center; 
+        }
+
+    </style>
+</head>
+<body>
+    <div class='email-container'>
+        <div class='header'>
+            <h1>Seu Código de Verificação</h1>
+        </div>
+        <div class='content'>
+            <p>Olá, obrigado por se inscrever. Abaixo está o seu código de verificação.</p>
+            <span class='code-box'>$content</span>
+            <p>Use este código para completar o seu cadastro. Se você não solicitou este código, por favor ignore este e-mail.</p>
+        </div>
+        <div class='footer'>
+            <p>&copy; " . date("Y") . " Krust Newsletter</p>
+        </div>
+    </div>
+</body>
         </html>";
 
         // Configuração da mensagem
