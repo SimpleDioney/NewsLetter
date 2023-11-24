@@ -5,6 +5,7 @@ O css esta todo baguncado pois o fiz apenas para deixar um pouco bonito, e ao fi
 Fiz este codigo todo para rodar no replit, usando o PostgreSQL. Bom uso!
 
 Lib utilizada para envio de email: PHPMailer
+
 Tipo de banco de dados utilizado: PostgreSQL
 
 [English]
@@ -14,5 +15,6 @@ The css is all messed up because I made it just to make it a little pretty, and 
 I made all this code to run in replit, using PostgreSQL. Good use!
 
 Lib used for sending email: PHPMailer
+
 Type of database used: PostgreSQL
 
