@@ -3,91 +3,93 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
+    color: #333;
 }
 
 .container {
     background-color: white;
-    padding: 30px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 400px; /* Largura máxima do container */
-}
-
-h2 {
-    color: #333;
-    margin-bottom: 20px; /* Espaço adicional abaixo do título */
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* Espaçamento entre os campos */
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    padding: 12px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px; /* Tamanho maior de fonte para melhor legibilidade */
-}
-
-input[type="submit"] {
-    background-color: #0056b3;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold; /* Tornar o texto mais visível */
-    transition: background-color 0.3s; /* Transição suave para o hover */
-}
-
-input[type="submit"]:hover {
-    background-color: #004494;
-}
-
-.error-message {
-    color: #d32f2f;
-    margin-top: 15px; /* Espaço acima da mensagem de erro */
-}
-
-.success-message {
-    color: #388e3c;
-    margin-top: 15px; /* Espaço acima da mensagem de sucesso */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .header {
-    background-color: #7a5af7;
+    background-color: #7a5af7; /* Purple */
     color: white;
     padding: 20px;
-    border-radius: 10px 10px 0 0;
-    font-size: 20px; /* Tamanho da fonte aumentado para o cabeçalho */
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.content {
+    padding: 20px;
+    text-align: left;
+    line-height: 1.6;
 }
 
 .footer {
-    text-align: center;
-    padding: 15px;
-    font-size: 14px;
-    background-color: #7a5af7;
+    background-color: #7a5af7; /* Purple */
     color: white;
-    border-radius: 0 0 10px 10px;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
-@media (max-width: 400px) {
-    .container {
-        width: 90%; /* Tornando mais responsivo em dispositivos menores */
-        margin: 20px;
-    }
+form {
+    display: block;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
-    body {
-        height: auto; /* Ajuste para visualização móvel */
+input[type='email'], input[type='text'] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type='submit'] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #7a5af7; /* Purple */
+    color: white;
+    cursor: pointer;
+}
+
+input[type='submit']:hover {
+    background-color: #6a1b9a; /* Darker Purple */
+}
+
+#verificationPopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+@media screen and (max-width: 768px) {
+    .container, form {
+        width: 95%;
+        max-width: none;
     }
 }
