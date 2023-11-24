@@ -51,36 +51,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $currentAttempts = $_SESSION['attempts'] ?? 0;
         $lastAttemptTime = $_SESSION['last_attempt_time'] ?? time();
 
-        if (time() - $lastAttemptTime < $attemptInterval) {
-            $errorMessage = 'Aguarde 30 segundos antes de tentar novamente.';
-            $showVerificationPopup = true;
-        } elseif ($currentAttempts >= $maxAttempts) {
-            $errorMessage = 'Limite de tentativas excedido.';
-        } else {
-            if ($email) {
-                try {
-                    $pdo = getPDO();
-                    $stmt = $pdo->prepare("SELECT * FROM subscribers WHERE email = :email AND verification_code = :code");
-                    $stmt->execute(['email' => $email, 'code' => $code]);
-                    $subscriber = $stmt->fetch();
+        if ($email) {
+            $pdo = getPDO();
+            $stmt = $pdo->prepare("SELECT * FROM subscribers WHERE email = :email");
+            $stmt->execute(['email' => $email]);
+            $subscriber = $stmt->fetch();
 
-                    if ($subscriber) {
+            if (!$subscriber) {
+                $errorMessage = 'Erro: E-mail não encontrado.';
+                $showVerificationPopup = true;
+            } else {
+                if (time() - $lastAttemptTime < $attemptInterval && $currentAttempts >= $maxAttempts) {
+                    $errorMessage = 'Aguarde 30 segundos antes de tentar novamente.';
+                    $showVerificationPopup = true;
+                } else {
+                    if ($code == $subscriber['verification_code']) {
                         $updateStmt = $pdo->prepare("UPDATE subscribers SET is_active = TRUE WHERE email = :email");
                         $updateStmt->execute(['email' => $email]);
 
                         $successMessage = 'Inscrição confirmada!';
+                        $_SESSION['attempts'] = 0;
                     } else {
-                        $_SESSION['attempts']++;
-                        $_SESSION['last_attempt_time'] = time();
-                        $errorMessage = 'Código de verificação incorreto. Tentativas restantes: ' . ($maxAttempts - $currentAttempts - 1);
-                        $showVerificationPopup = true;
+                        if ($currentAttempts >= $maxAttempts - 1) {
+                            $errorMessage = 'Limite de tentativas excedido. Aguarde 30 segundos antes de tentar novamente.';
+                            $_SESSION['last_attempt_time'] = time();
+                            $_SESSION['attempts']++;
+                            $showVerificationPopup = true;
+                        } else {
+                            $_SESSION['attempts']++;
+                            $errorMessage = 'Código de verificação incorreto. Tentativas restantes: ' . ($maxAttempts - $currentAttempts - 1);
+                            $showVerificationPopup = true;
+                        }
                     }
-                } catch (PDOException $e) {
-                    $errorMessage = "Erro: " . $e->getMessage();
                 }
-            } else {
-                $errorMessage = 'Erro: E-mail não encontrado.';
-                $showVerificationPopup = true;
             }
         }
     }
