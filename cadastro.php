@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['attempts'] = 0;
             $_SESSION['last_attempt_time'] = time();
 
-            sendEmail($email, "Seu Código de Verificação", "Seu código é: $verificationCode", $emailConfig);
+            sendEmail($email, "Seu Código de Verificação", "$verificationCode", $emailConfig);
 
             $showVerificationPopup = true;
         } catch (PDOException $e) {
